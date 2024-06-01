@@ -1,11 +1,29 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
+import Nav from "../components/Nav.astro";
+import Experiencia from "../components/Experiencia.astro";
+import Title from "../components/Title.astro";
+import Proyectos from "../components/Proyectos.astro";
 ---
 
 <Layout title="Portafolio de Pablo Oyarce">
 	<main class="container py-20">
 		<Header />
-		<section></section>
+		<Nav />
+		<section class="flex flex-col gap-10 py-16">
+			<Title>
+				<span slot="icon">💼</span>
+				<span slot="text">Experiencia laboral</span>
+			</Title>
+			<Experiencia />
+		</section>
+		<section class="flex flex-col gap-10 py-16">
+			<Title>
+				<span slot="icon">💻</span>
+				<span slot="text">Proyectos</span>
+			</Title>
+			<Proyectos />
+		</section>
 	</main>
 </Layout>

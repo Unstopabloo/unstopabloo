@@ -4,6 +4,8 @@ export default {
 	theme: {
 		colors: {
 			'unst': '#16ECD3',
+			'parrafo': '#D1D5DB',
+			'chip': '#161D39',
 			'black': '#000000',
 			'white': '#FFFFFF',
 			'gray': {

@@ -1,0 +1,85 @@
+<nav class="nav sticky top-0 w-full border-b border-[#A6CFFF]/20 py-8">
+  <ul class="navigate flex items-center justify-between gap-4">
+    <li>
+      <a
+        href="#"
+        class="py-4 px-12 rounded-xl text-white border-chip bg-chip border-2 hover:border-unst"
+      >
+        Experiencia
+      </a>
+    </li>
+    <li>
+      <a
+        href="#"
+        class="py-4 px-12 rounded-xl text-white border-chip bg-chip border-2 hover:border-unst"
+      >
+        Proyectos
+      </a>
+    </li>
+    <li>
+      <a
+        href="#"
+        class="py-4 px-12 rounded-xl text-white border-chip bg-chip border-2 hover:border-unst"
+      >
+        Sobre mí
+      </a>
+    </li>
+    <li>
+      <a
+        href="#"
+        class="py-4 px-12 rounded-xl text-white border-chip bg-chip border-2 hover:border-unst"
+      >
+        Contacto
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<style>
+  .navigate,
+  .nav {
+    animation: enhance linear both;
+    animation-timeline: scroll(root);
+    animation-range: 500px 600px;
+  }
+
+  .nav {
+    animation: enhance-nav linear both;
+    animation-timeline: scroll(root);
+    animation-range: 500px 600px;
+  }
+
+  @keyframes enhance-nav {
+    to {
+      background: -moz-radial-gradient(
+        circle,
+        rgba(3, 6, 17, 0.47102591036414565) 0%,
+        rgba(3, 6, 17, 0.23853291316526615) 22%,
+        rgba(3, 6, 17, 0.13489145658263302) 48%,
+        rgba(3, 6, 17, 0) 73%
+      );
+      background: -webkit-radial-gradient(
+        circle,
+        rgba(3, 6, 17, 0.47102591036414565) 0%,
+        rgba(3, 6, 17, 0.23853291316526615) 22%,
+        rgba(3, 6, 17, 0.13489145658263302) 48%,
+        rgba(3, 6, 17, 0) 73%
+      );
+      background: radial-gradient(
+        circle,
+        rgba(3, 6, 17, 0.47102591036414565) 0%,
+        rgba(3, 6, 17, 0.23853291316526615) 22%,
+        rgba(3, 6, 17, 0.13489145658263302) 48%,
+        rgba(3, 6, 17, 0) 73%
+      );
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#030611",endColorstr="#030611",GradientType=1);
+      border-bottom: none;
+    }
+  }
+
+  @keyframes enhance {
+    to {
+      transform: scale(0.7);
+    }
+  }
+</style>

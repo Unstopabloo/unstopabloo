@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import Perfil from "../img/perfil1.avif";
+import Chip from "./Chip.astro";
 ---
 
 <header>
@@ -20,5 +21,16 @@ import Perfil from "../img/perfil1.avif";
       >Actualmente trabajando</small
     >
     <h1 class="jost font-bold text-5xl text-white">Hola! soy Pablo Oyarce</h1>
+  </div>
+  <div class="flex flex-col gap-8 py-20 max-w-[456px]">
+    <p class="text-parrafo text-xl [&>strong]:text-unst">
+      Desarrollador <strong>Frontend</strong> y entusiasta del diseño y experiencia
+      de <strong>interfaces</strong>, especializado
+      <strong>aplicaciones web</strong> y sitios interactivos.
+    </p>
+    <div class="flex items-center gap-10">
+      <Chip href="#" name="Correo" />
+      <Chip href="#" name="LinkedIn" />
+    </div>
   </div>
 </header>

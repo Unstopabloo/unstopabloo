@@ -1,0 +1,20 @@
+---
+import { Gmail, LinkedIn, Github } from "../icons/Icons";
+
+interface Props {
+  name: string;
+  href: string;
+}
+
+const { name, href } = Astro.props;
+---
+
+<a
+  href={href}
+  class="flex items-center justify-center gap-2 rounded-full bg-chip min-w-36 text-sm py-1 px-4 text-white/90 border-2 border-[#241561] hover:border-unst"
+>
+  {name === "Correo" && <Gmail />}
+  {name === "LinkedIn" && <LinkedIn />}
+  {name === "Github" && <Github />}
+  {name}
+</a>
