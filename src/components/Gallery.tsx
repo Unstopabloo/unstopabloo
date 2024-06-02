@@ -5,9 +5,9 @@ export function Gallery() {
   const [principalImg, setPrincipalImg] = useState<number>(0);
 
   const pictures = [
-    "./src/img/perfil1.avif",
-    "./src/img/perfil2.avif",
-    "./src/img/perfil3.avif"
+    "/images/perfil1.avif",
+    "/images/perfil2.avif",
+    "/images/perfil3.avif"
   ]
 
   const handleClick = () => {
