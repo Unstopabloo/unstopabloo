@@ -1,0 +1,86 @@
+---
+import {
+  AmazonWebServices,
+  Astro as AstroIcon,
+  Bootstrap,
+  CSS,
+  Express,
+  HTML5,
+  Nextjs,
+  Php,
+  Nodejs,
+  TailwindCSS,
+  TypeScript,
+  Shopify,
+  React,
+  Python,
+  PostgreSQL,
+  ReactQuery,
+  jQuery,
+} from "../icons/Icons";
+
+interface Props {
+  text:
+    | "HTML5"
+    | "CSS"
+    | "TypeScript"
+    | "React"
+    | "NextJS"
+    | "NodeJS"
+    | "Express"
+    | "TailwindCSS"
+    | "Bootstrap"
+    | "PHP"
+    | "Shopify"
+    | "Amazon Web Services"
+    | "Astro"
+    | "Python"
+    | "PostgreSQL"
+    | "React Query"
+    | "jQuery";
+}
+
+const { text } = Astro.props;
+---
+
+<div
+  class="tooltip relative size-6 flex items-center justify-center rounded-full"
+>
+  {text === "HTML5" && <HTML5 />}
+  {text === "CSS" && <CSS />}
+  {text === "TypeScript" && <TypeScript />}
+  {text === "React" && <React />}
+  {text === "NextJS" && <Nextjs />}
+  {text === "NodeJS" && <Nodejs />}
+  {text === "Express" && <Express />}
+  {text === "TailwindCSS" && <TailwindCSS />}
+  {text === "Bootstrap" && <Bootstrap />}
+  {text === "PHP" && <Php />}
+  {text === "Shopify" && <Shopify />}
+  {text === "Amazon Web Services" && <AmazonWebServices />}
+  {text === "Astro" && <AstroIcon />}
+  {text === "Python" && <Python />}
+  {text === "PostgreSQL" && <PostgreSQL />}
+  {text === "React Query" && <ReactQuery />}
+  {text === "jQuery" && <jQuery />}
+
+  <span
+    class="absolute z-10 -top-5 right-0 text-[9px] py-1 px-2 rounded-xl bg-chip border border-[#241561] text-white font-semibold"
+  >
+    {text}
+  </span>
+</div>
+
+<style>
+  .tooltip span {
+    opacity: 0;
+    transition: all 0.3s;
+    transform: scale(0.8);
+    transition-delay: 0.2s;
+  }
+
+  .tooltip:hover span {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+</style>

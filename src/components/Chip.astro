@@ -4,16 +4,19 @@ import { Gmail, LinkedIn, Github } from "../icons/Icons";
 interface Props {
   name: string;
   href: string;
+  card?: boolean;
+  className?: string;
+  related?: boolean;
 }
 
-const { name, href } = Astro.props;
+const { name, href, card, className, related } = Astro.props;
 ---
 
 <a
   href={href}
-  class="flex items-center justify-center gap-2 rounded-full bg-chip min-w-36 text-sm py-1 px-4 text-white/90 border-2 border-[#241561] hover:border-unst"
+  class={`flex items-center justify-center gap-2 rounded-full bg-chip min-w-36 ${card ? "py-3 px-6 text-base font-semibold" : "py-1 px-4 text-sm font-regular"} text-white/90 border-2 ${related ? "border-unst" : "border-[#241561]"} hover:border-unst ${className}`}
 >
-  {name === "Correo" && <Gmail />}
+  {name === "Contactame" && <Gmail />}
   {name === "LinkedIn" && <LinkedIn />}
   {name === "Github" && <Github />}
   {name}

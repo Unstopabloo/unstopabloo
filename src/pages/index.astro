@@ -5,25 +5,41 @@ import Nav from "../components/Nav.astro";
 import Experiencia from "../components/Experiencia.astro";
 import Title from "../components/Title.astro";
 import Proyectos from "../components/Proyectos.astro";
+import Sobremi from "../components/Sobremi.astro";
+import Tecnologias from "../components/Tecnologias.astro";
 ---
 
 <Layout title="Portafolio de Pablo Oyarce">
 	<main class="container py-20">
 		<Header />
 		<Nav />
-		<section class="flex flex-col gap-10 py-16">
+		<section id="experiencia" class="flex flex-col gap-10 py-16 px-6">
 			<Title>
 				<span slot="icon">💼</span>
 				<span slot="text">Experiencia laboral</span>
 			</Title>
 			<Experiencia />
 		</section>
-		<section class="flex flex-col gap-10 py-16">
+		<section id="proyectos" class="flex flex-col gap-10 py-16 px-6">
 			<Title>
 				<span slot="icon">💻</span>
 				<span slot="text">Proyectos</span>
 			</Title>
 			<Proyectos />
+		</section>
+		<section id="sobre-mi" class="flex flex-col gap-10 py-16 px-6">
+			<Title>
+				<span slot="icon">👋</span>
+				<span slot="text">Sobre mí</span>
+			</Title>
+			<Sobremi />
+		</section>
+		<section id="tecnologias" class="flex flex-col gap-10 py-16 px-6">
+			<Title>
+				<span slot="icon">🔧</span>
+				<span slot="text">Tecnologías</span>
+			</Title>
+			<Tecnologias />
 		</section>
 	</main>
 </Layout>

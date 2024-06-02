@@ -1,14 +1,151 @@
-<div class="flex flex-col gap-6">
-  <article class="flex gap-4">
-    <div class="flex flex-col justify-between">
+---
+import Tooltip from "./Tooltip.astro";
+import { Smarthphone, Laptop, Tablet } from "../icons/Icons";
+import { Image } from "astro:assets";
+
+import Teachill from "../img/shots-teachill.png";
+import Kairos from "../img/shots-kairosx.png";
+import Mentoru from "../img/shots-mentoru.png";
+import Chip from "./Chip.astro";
+---
+
+<div class="flex flex-col gap-20">
+  <article class="flex gap-10">
+    <div class="flex flex-col gap-8">
       <header class="flex flex-col gap-2">
         <h3 class="jost text-unst font-semibold text-[21px]">
           TeaChill - Shopify headless Ecommerce
         </h3>
         <div class="flex items-center justify-between">
-          <div aria-label="Tecnologias usadas"></div>
+          <div aria-label="Tecnologias usadas" class="flex items-cente gap-2">
+            <Tooltip text="TypeScript" />
+            <Tooltip text="NextJS" />
+            <Tooltip text="Shopify" />
+            <Tooltip text="TailwindCSS" />
+          </div>
+          <div class="flex items-center">
+            <Smarthphone />
+            <Laptop />
+          </div>
         </div>
       </header>
+      <p class="font-medium text-base text-parrafo/80 max-w-80 text-pretty">
+        Ecommerce de venta de variedades de té enfocado en la performance del
+        sitio, desarrollado con NextJS y Shopify como headless CMS
+      </p>
+    </div>
+    <div
+      class="imageCard relative overflow-hidden rounded-xl max-w-[450px] max-h-[300px]"
+    >
+      <Image
+        src={Teachill}
+        alt="Imagen de proyecto: Teachill"
+        loading="lazy"
+        decoding="async"
+        class="w-full h-full object-cover"
+      />
+      <div
+        class="absolute z-10 flex flex-col justify-center items-center gap-10 top-0 left-0 w-full h-full bg-chip/30 backdrop-blur-sm"
+      >
+        <Chip className="z-20" card href="#" name="Github" />
+        <Chip className="z-20" card href="#" name="Visitar" />
+      </div>
+    </div>
+  </article>
+  <article class="flex gap-10">
+    <div class="flex flex-col gap-8">
+      <header class="flex flex-col gap-2">
+        <h3 class="jost text-unst font-semibold text-[21px]">
+          TeaChill - Shopify headless Ecommerce
+        </h3>
+        <div class="flex items-center justify-between">
+          <div aria-label="Tecnologias usadas" class="flex items-cente gap-2">
+            <Tooltip text="TypeScript" />
+            <Tooltip text="NextJS" />
+            <Tooltip text="Shopify" />
+            <Tooltip text="TailwindCSS" />
+          </div>
+          <div class="flex items-center">
+            <Smarthphone />
+            <Laptop />
+          </div>
+        </div>
+      </header>
+      <p class="font-medium text-base text-parrafo/80 max-w-80 text-pretty">
+        Ecommerce de venta de variedades de té enfocado en la performance del
+        sitio, desarrollado con NextJS y Shopify como headless CMS
+      </p>
+    </div>
+    <div
+      class="imageCard relative overflow-hidden rounded-xl max-w-[450px] max-h-[300px]"
+    >
+      <Image
+        src={Teachill}
+        alt="Imagen de proyecto: Teachill"
+        loading="lazy"
+        decoding="async"
+        class="w-full h-full object-cover"
+      />
+      <div
+        class="absolute z-10 flex flex-col justify-center items-center gap-10 top-0 left-0 w-full h-full bg-chip/30 backdrop-blur-sm"
+      >
+        <Chip className="z-20" card href="#" name="Github" />
+        <Chip className="z-20" card href="#" name="Visitar" />
+      </div>
+    </div>
+  </article>
+  <article class="flex gap-10">
+    <div class="flex flex-col gap-8">
+      <header class="flex flex-col gap-2">
+        <h3 class="jost text-unst font-semibold text-[21px]">
+          TeaChill - Shopify headless Ecommerce
+        </h3>
+        <div class="flex items-center justify-between">
+          <div aria-label="Tecnologias usadas" class="flex items-cente gap-2">
+            <Tooltip text="TypeScript" />
+            <Tooltip text="NextJS" />
+            <Tooltip text="Shopify" />
+            <Tooltip text="TailwindCSS" />
+          </div>
+          <div class="flex items-center">
+            <Smarthphone />
+            <Laptop />
+          </div>
+        </div>
+      </header>
+      <p class="font-medium text-base text-parrafo/80 max-w-80 text-pretty">
+        Ecommerce de venta de variedades de té enfocado en la performance del
+        sitio, desarrollado con NextJS y Shopify como headless CMS
+      </p>
+    </div>
+    <div
+      class="imageCard relative overflow-hidden rounded-xl max-w-[450px] max-h-[300px]"
+    >
+      <Image
+        src={Teachill}
+        alt="Imagen de proyecto: Teachill"
+        loading="lazy"
+        decoding="async"
+        class="w-full h-full object-cover"
+      />
+      <div
+        class="absolute z-10 flex flex-col justify-center items-center gap-10 top-0 left-0 w-full h-full bg-chip/30 backdrop-blur-sm"
+      >
+        <Chip className="z-20" card href="#" name="Github" />
+        <Chip className="z-20" card href="#" name="Visitar" />
+      </div>
     </div>
   </article>
 </div>
+
+<style>
+  .imageCard div {
+    transition: transform 0.3s;
+    opacity: 0;
+  }
+
+  .imageCard:hover div {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+</style>

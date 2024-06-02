@@ -1,0 +1,50 @@
+---
+import { Gallery } from "./Gallery";
+import Chip from "./Chip.astro";
+---
+
+<article class="flex flex-col gap-12">
+  <div class="flex justify-between gap-20">
+    <div
+      class="flex flex-col gap-4 [&>p]:max-w-[550px] [&>p]:text-parrafo [&>p>strong]:text-unst"
+    >
+      <p>
+        Me llamo <strong>Pablo Oyarce Ramírez</strong>, actualmente vivo en <strong
+          >Chile</strong
+        >. Comencé mi camino en la programación en mi juventud cuando me
+        regalaron un computador de escritorio y me interesó cómo funcionaba el
+        hardware de estos, así como también los sitios web.
+      </p>
+      <p>
+        Mis tiempos libres los paso junto a mis mascotas, 3 gatitos y 1 perrito.
+        Me encanta el <strong>trekking</strong> y lo practico de vez en cuando.
+      </p>
+      <p>
+        Estudié Desarrollo y Diseño Web en IP DuocUC, donde aprendí
+        principalmente
+        <strong>PHP, JS, jQuery y WordPress.</strong> Paralelo a esto aprendí <strong
+          >NodeJs, TypeScript y React</strong
+        > de forma <strong>autodidacta</strong>, en lo cual me siento muy cómodo
+        desarrollando. Actualmente me encanta
+        <strong>NextJS,</strong> el desarrollo de APIs y me encuentro aprendiendo
+        el desarrollo mobile con React Native.
+      </p>
+    </div>
+    <Gallery client:visible />
+  </div>
+  <div class="flex gap-x-8 items-center max-w-96">
+    <Chip
+      href="mailto:pablooyarceramirez@gmail.com?Subject=Trabajemos juntos en algo increible"
+      name="Contactame"
+    />
+    <Chip
+      related
+      href="https://www.linkedin.com/in/pablo-oyarce-ramirez/"
+      name="LinkedIn"
+    />
+    <Chip
+      href="https://www.linkedin.com/in/pablo-oyarce-ramirez/"
+      name="Github"
+    />
+  </div>
+</article>

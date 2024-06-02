@@ -29,6 +29,26 @@ const { title } = Astro.props;
 		>
 		</div>
 		<slot />
+		<footer class="bg-chip p-4 w-full">
+			<div
+				class="container flex justify-between items-center bg-chip p-4 w-full"
+			>
+				<small class="text-parrafo/30">™2024</small>
+				<div class="flex items-center gap-10">
+					<a
+						aria-label="Contactar a Pablo Oyarce por correo electronico"
+						class="text-parrafo/30 text-xs hover:underline underline-offset-4"
+						href="mailto:pablooyarceramirez@gmail.com?Subject=Trabajemos juntos en algo increible"
+						>Correo</a
+					>
+					<a
+						aria-label="Visitar el perfil de LinkedIn de Pablo Oyarce"
+						class="text-parrafo/30 text-xs hover:underline underline-offset-4"
+						href="https://www.linkedin.com/in/pablo-oyarce-ramirez/">LinkedIn</a
+					>
+				</div>
+			</div>
+		</footer>
 	</body>
 </html>
 <style is:global>
@@ -42,6 +62,7 @@ const { title } = Astro.props;
 			rgb(var(--accent-light)) 30%,
 			white 60%
 		);
+		scroll-behavior: smooth;
 	}
 	html {
 		font-family: system-ui, sans-serif;
