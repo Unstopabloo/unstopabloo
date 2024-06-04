@@ -16,7 +16,8 @@ import {
   Python,
   PostgreSQL,
   ReactQuery,
-  jQuery,
+  JQuery,
+  WordPress,
 } from "../icons/Icons";
 
 interface Props {
@@ -37,7 +38,9 @@ interface Props {
     | "Python"
     | "PostgreSQL"
     | "React Query"
-    | "jQuery";
+    | "jQuery"
+    | "Wordpress"
+    | string;
 }
 
 const { text } = Astro.props;
@@ -62,7 +65,8 @@ const { text } = Astro.props;
   {text === "Python" && <Python />}
   {text === "PostgreSQL" && <PostgreSQL />}
   {text === "React Query" && <ReactQuery />}
-  {text === "jQuery" && <jQuery />}
+  {text === "jQuery" && <JQuery />}
+  {text === "Wordpress" && <WordPress />}
 
   <span
     class="absolute z-10 -top-5 right-0 text-[9px] py-1 px-2 rounded-xl bg-chip border border-[#241561] text-white font-semibold"
