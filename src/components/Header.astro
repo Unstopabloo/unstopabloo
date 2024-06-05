@@ -4,12 +4,12 @@ import Perfil from "../img/perfil1.avif";
 import Chip from "./Chip.astro";
 ---
 
-<header>
+<header class="px-4 md:p-0">
   <div
-    class="relative w-full flex justify-center items-center py-14 px-4 rounded-xl border-[4px] border-unst"
+    class="relative w-full flex justify-center items-center py-10 md:py-14 px-1 md:px-4 rounded-xl border-[4px] border-unst"
   >
     <div
-      class="absolute overflow-hidden flex items-center justify-center -bottom-8 -left-8 size-20 rounded-full bg-transparent border-[4px] border-unst"
+      class="absolute overflow-hidden flex items-center justify-center -bottom-6 md:-bottom-8 -left-4 md:-left-8 size-14 sm:size-16 md:size-20 rounded-full bg-transparent border-[2px] md:border-[4px] border-unst"
     >
       <Image
         src={Perfil}
@@ -17,18 +17,21 @@ import Chip from "./Chip.astro";
         class="rounded-full object-cover translate-y-1"
       />
     </div>
-    <small class="absolute -bottom-7 left-14 font-semibold text-unst"
+    <small
+      class="absolute -bottom-5 md:-bottom-7 left-10 md:left-14 font-normal text-[10px] md:text-[12px] md:font-semibold text-unst"
       >Actualmente trabajando</small
     >
-    <h1 class="jost font-bold text-5xl text-white">Hola! soy Pablo Oyarce</h1>
+    <h1 class="jost font-bold text-[28px] md:text-5xl text-white">
+      Hola! soy Pablo Oyarce
+    </h1>
   </div>
-  <div class="flex flex-col gap-8 py-20 max-w-[456px]">
-    <p class="text-parrafo text-xl [&>strong]:text-unst">
+  <div class="flex flex-col gap-6 md:gap-8 py-16 md:py-20 max-w-[456px]">
+    <p class="text-parrafo text-lg md:text-xl [&>strong]:text-unst">
       Desarrollador <strong>Frontend</strong> y entusiasta del diseño y experiencia
       de <strong>interfaces</strong>, especializado
       <strong>aplicaciones web</strong> y sitios interactivos.
     </p>
-    <div class="flex items-center gap-10">
+    <div class="flex items-start md:items-center gap-6 md:gap-10">
       <Chip href="#" name="Contactame" />
       <Chip href="#" name="LinkedIn" />
     </div>
