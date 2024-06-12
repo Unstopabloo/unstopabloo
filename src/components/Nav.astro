@@ -1,90 +1,42 @@
-<nav
-  class="nav sticky top-0 w-full border-b border-[#A6CFFF]/20 py-4 md:py-8 z-50"
->
+<nav>
   <ul
-    class="navigate flex md:p-0 p-2 gap-y-2 items-center justify-between gap-1 md:gap-4"
+    class="hidden lg:flex flex-col gap-4 [&>li]:py-1 [&>li]:w-fit [&>li]:max-w-[100px] [&>li]:text-slate-400"
   >
     <li>
-      <a
-        href="#experiencia"
-        class="py-2 md:py-4 px-4 md:px-12 rounded-xl text-white text-[11px] md:text-sm border-chip bg-chip border-2 hover:border-unst"
-      >
-        Experiencia
-      </a>
+      <a href="#experiencia">Experiencia</a>
     </li>
     <li>
-      <a
-        href="#proyectos"
-        class="py-2 md:py-4 px-4 md:px-12 rounded-xl text-white text-[11px] md:text-sm border-chip bg-chip border-2 hover:border-unst"
-      >
-        Proyectos
-      </a>
+      <a href="#proyectos">Proyectos</a>
     </li>
     <li>
-      <a
-        href="#sobre-mi"
-        class="py-2 md:py-4 px-4 md:px-12 rounded-xl text-white text-[11px] md:text-sm border-chip bg-chip border-2 hover:border-unst"
-      >
-        Sobre mí
-      </a>
+      <a href="#sobre-mi">Sobre mí</a>
     </li>
     <li>
-      <a
-        href="#tecnologias"
-        class="py-2 md:py-4 px-4 md:px-12 rounded-xl text-white text-[11px] md:text-sm border-chip bg-chip border-2 hover:border-unst"
-      >
-        Tecnolgías
-      </a>
+      <a href="#tecnologias">Tecnologías</a>
     </li>
   </ul>
 </nav>
 
 <style>
-  .navigate,
-  .nav {
-    animation: enhance linear both;
-    animation-timeline: scroll(root);
-    animation-range: 500px 600px;
+  li {
+    transition: color 0.3s;
   }
 
-  .nav {
-    animation: enhance-nav linear both;
-    animation-timeline: scroll(root);
-    animation-range: 500px 600px;
+  li:hover {
+    color: white;
   }
 
-  @keyframes enhance-nav {
-    to {
-      background: -moz-radial-gradient(
-        circle,
-        rgba(3, 6, 17, 0.47102591036414565) 0%,
-        rgba(3, 6, 17, 0.23853291316526615) 22%,
-        rgba(3, 6, 17, 0.13489145658263302) 48%,
-        rgba(3, 6, 17, 0) 73%
-      );
-      background: -webkit-radial-gradient(
-        circle,
-        rgba(3, 6, 17, 0.47102591036414565) 0%,
-        rgba(3, 6, 17, 0.23853291316526615) 22%,
-        rgba(3, 6, 17, 0.13489145658263302) 48%,
-        rgba(3, 6, 17, 0) 73%
-      );
-      background: radial-gradient(
-        circle,
-        rgba(3, 6, 17, 0.47102591036414565) 0%,
-        rgba(3, 6, 17, 0.23853291316526615) 22%,
-        rgba(3, 6, 17, 0.13489145658263302) 48%,
-        rgba(3, 6, 17, 0) 73%
-      );
-      backdrop-filter: blur(10px);
-      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#030611",endColorstr="#030611",GradientType=1);
-      border-bottom: none;
-    }
+  li::after {
+    content: "";
+    display: block;
+    width: 0%;
+    height: 1px;
+    margin-top: 10px;
+    background-color: white;
+    transition: width 0.3s;
   }
 
-  @keyframes enhance {
-    to {
-      transform: scale(0.7);
-    }
+  li:hover::after {
+    width: 100%;
   }
 </style>

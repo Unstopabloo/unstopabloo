@@ -22,11 +22,21 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body class="relative">
+		<!-- <div
+			class="absolute top-0 bottom-0 z-0 min-h-screen w-full bg-[radial-gradient(ellipse_35%_20%_at_0%_0%,rgba(29, 78, 216, 0.55),rgba(29, 78, 216, 0.15))]"
+		>
+		</div> -->
 		<div
-			class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-[radial-gradient(ellipse_60%_60%_at_0%_0%,rgba(36,21,97,1),rgba(6,13,37,0.5))]"
+			id="trailer"
+			class="pointer-events-none fixed inset-0 -z-30 duration-300"
+			style="background: radial-gradient(600px at 1000px 500px, rgba(29, 78, 216, 0.15), transparent 80%);"
 		>
 		</div>
-		<slot />
+		<div
+			class="mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0 z-50"
+		>
+			<slot />
+		</div>
 		<footer class="bg-chip p-4 w-full">
 			<div
 				class="container flex justify-between items-center bg-chip p-4 w-full"
@@ -49,6 +59,18 @@ const { title } = Astro.props;
 		</footer>
 	</body>
 </html>
+
+<script>
+	const trailer = document.getElementById("trailer");
+
+	window.onmousemove = (e) => {
+		const x = e.clientX - trailer!.offsetWidth / 2;
+		const y = e.clientY - trailer!.offsetHeight / 2;
+
+		trailer!.style.transform = `translate(${x}px, ${y}px)`;
+	};
+</script>
+
 <style is:global>
 	:root {
 		--accent: 136, 58, 234;

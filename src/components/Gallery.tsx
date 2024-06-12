@@ -23,12 +23,12 @@ export function Gallery() {
     <div className="relative">
       <button
         onClick={handleClick}
-        className="absolute flex items-center gap-2 left-52 top-0 z-20 bg-chip text-white rounded-full py-2 px-4 border-2 border-unst hover:bg-unst hover:text-chip transition-all duration-300 ease-in-out"
+        className="absolute flex items-center gap-2 lg:left-32 xl:left-44 -top-5 z-20 bg-chip text-white rounded-full py-2 px-4 border-2 border-teal-300 hover:bg-teal-300 hover:text-slate-900 transition-all duration-300 ease-in-out"
       ><RefreshCw size={18} /> Swop!</button>
       <img
         src={pictures[principalImg]}
         alt="Foto de Pablo Oyarce"
-        className="border-4 border-unst z-10 w-56 h-56 aspect-square object-cover rounded-xl -rotate-2"
+        className="border-4 border-teal-300 z-10 w-64 h-56 aspect-square object-cover rounded-xl -rotate-2"
       />
       <img
         src={pictures[principalImg + 1] || pictures[0]}

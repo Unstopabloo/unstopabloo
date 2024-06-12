@@ -1,21 +1,32 @@
-<article
-  class="border-s-2 border-unst py-2 md:py-4 px-3 flex flex-col md:flex-row items-start gap-5 md:gap-10 text-white"
->
-  <div class="flex flex-col gap-1 md:gap-4 min-w-64 ps-2 md:ps-6">
-    <header>
-      <h3 class="jost text-unst font-semibold text-[21px]">
+---
+import Title from "../components/Title.astro";
+---
+
+<Title>
+  <span slot="icon">💼</span>
+  <span slot="text">Experiencia laboral</span>
+</Title>
+<section class="flex flex-col gap-4 z-50">
+  <header class="flex items-start justify-between">
+    <a
+      aria-label="MentorU es una plataforma de mentoring en la que se me encarga de la interfaz y las APIs con NextJS y AWS, este foro esta potenciado con AI para entregar feedback preciso y oportuno a los estudiantes."
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://mentoru.co/"
+      class="flex flex-col gap-1 text-slate-200 hover:text-teal-300"
+    >
+      <h3 class="jost leading-tight font-medium text-[20px] z-50">
         Fullstack Developer
       </h3>
-      <strong class="font-medium">MentorU</strong>
-    </header>
+      <strong class="font-normal leading-none">MentorU</strong>
+    </a>
     <time class="text-parrafo text-sm font-normal">Oct. 23 - Actualidad</time>
-  </div>
-  <p
-    class="font-medium text-[15px] text-parrafo max-w-96 text-pretty ps-2 md:ps-0"
-  >
+  </header>
+
+  <p class="text-sm text-slate-400 max-w-[85%] text-pretty">
     Responsable de la creacion y mantenimiento de la API gateway en AWS
     integrando servicios como Lambda, SQS, RDS aplicando lenguajes como NodeJS y
     Python. También asegurando el funcionamiento y desarrollo integro de la
     interfaz en NextJS.
   </p>
-</article>
+</section>
