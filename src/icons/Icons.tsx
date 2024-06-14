@@ -56,15 +56,48 @@ export const Smarthphone = () => <svg
   viewBox="0 0 24 24"
   fill="none"
   stroke="#D1D5DB"
-  stroke-width="0.75"
-  stroke-linecap="round"
-  stroke-linejoin="round"
+  strokeWidth="0.75"
+  strokeLinecap="round"
+  strokeLinejoin="round"
   className="lucide lucide-smartphone"
 ><rect width="11" height="20" x="5" y="2" rx="2" ry="2"
 ></rect><path d="M12 18h.01"></path></svg>;
 
-export const Laptop = () => <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D1D5DB" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-laptop"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16" /></svg>
+export const Laptop = () => <svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="18"
+  height="18"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="#D1D5DB"
+  strokeWidth="0.75"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+  className="lucide lucide-laptop"
+><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16" /></svg>
 
-export const Tablet = () => <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D1D5DB" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-tablet rotate-90"><rect width="16" height="20" x="4" y="2" rx="2" ry="2" /><line x1="12" x2="12.01" y1="18" y2="18" /></svg>
+export const Tablet = () => <svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="14"
+  height="14"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="#D1D5DB"
+  strokeWidth="0.75"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+  className="lucide lucide-tablet rotate-90"
+><rect width="16" height="20" x="4" y="2" rx="2" ry="2" /><line x1="12" x2="12.01" y1="18" y2="18" /></svg>
 
-export const Refresh = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-refresh-cw"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" /><path d="M8 16H3v5" /></svg>
+export const Refresh = () => <svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="16"
+  height="16"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  strokeWidth="1"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+  className="lucide lucide-refresh-cw"
+><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" /><path d="M8 16H3v5" /></svg>
