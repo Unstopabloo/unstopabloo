@@ -62,8 +62,16 @@ import Title from "./Title.astro";
             </div>
             <div class="col-span-2 flex flex-col gap-4">
               <header class="flex flex-col gap-2">
-                <h3 class="jost leading-tight font-medium text-[20px] text-slate-200">
-                  {project.title}
+                <h3 class="jost leading-tight font-medium text-[20px]">
+                  <a
+                    href={project.primary_url}
+                    target="_blank"
+                    aria-label={`Visitar el proyecto ${project.title}`}
+                    rel="noopener noreferrer"
+                    class="text-slate-200 hover:text-teal-300"
+                  >
+                    {project.title}
+                  </a>
                 </h3>
                 <div class="flex items-center justify-between">
                   <div
@@ -88,6 +96,20 @@ import Title from "./Title.astro";
               <p class="text-sm text-slate-400 text-pretty">
                 {project.description}
               </p>
+              {project.credits && (
+                <small class="text-xs text-slate-500 text-pretty">
+                  Diseñado por:
+                  <a
+                    href="https://www.behance.net/vivianauyarte"
+                    target="_blank"
+                    aria-label="Visitar perfil de behance de Viviana Uyarte"
+                    rel="noopener noreferrer"
+                    class="text-xs text-slate-500 hover:text-white"
+                  >
+                    Viviana Uyarte
+                  </a>
+                </small>
+              )}
             </div>
           </article>
         </>
