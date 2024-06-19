@@ -7,6 +7,8 @@ import Teachill from "../img/shots-teachill.png";
 import Kairos from "../img/shots-kairosx.png";
 import Mentoru from "../img/shots-mentoru.png";
 import Spotify from "../img/shots-spotify.png";
+import InnerVoice from "../img/shots-inner-voice.avif";
+import Hive5 from "../img/shots-hive5.avif";
 import Chip from "./Chip.astro";
 
 import { PROJECTS } from "../lib/data";
@@ -29,6 +31,10 @@ import Title from "./Title.astro";
         image = Mentoru;
       } else if (project.image === "Spotify") {
         image = Spotify;
+      } else if (project.image === "InnerVoice") {
+        image = InnerVoice;
+      } else if (project.image === "Hive5") {
+        image = Hive5;
       } else {
         image = Teachill;
       }

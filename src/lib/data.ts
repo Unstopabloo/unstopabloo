@@ -22,7 +22,8 @@ type Tool = | "HTML5"
   | "PostgreSQL"
   | "React Query"
   | "jQuery"
-  | "Wordpress";
+  | "Wordpress"
+  | "JavaScript";
 
 interface Project {
   id: number;
@@ -130,5 +131,54 @@ export const PROJECTS: Project[] = [
       }
     ]
   },
+  {
+    id: 5,
+    title: "Hive5 - Gestion y trabajo grupal",
+    description: "Hive5 está pensado para ser utilizado como software interno de la metodologia ACBD ampliamente utilizado en la escuela de diseño de DuocUC, fue diseñado para que los alumnos tengan mejor integración en el desarrollo de los proyectos y los docentes tegan informacion más precisa en cuanto a la participación de cada alumno. En este proyecto se implemento interfaz optimista y Suspense.",
+    primary_url: "https://hive5.vercel.app/",
+    tools: [
+      "NextJS",
+      "TypeScript",
+      "NodeJS",
+      "TailwindCSS"
+    ],
+    devices: ["Mobile", "Desktop"],
+    image: "Hive5",
+    links: [
+      {
+        url: "https://hive5.vercel.app/",
+        name: "Visitar"
+      },
+      {
+        url: "https://github.com/Unstopabloo/uCount",
+        name: "Github"
+      }
+    ]
+  },
+  {
+    id: 6,
+    title: "Inner Voice - Skills recap",
+    description: "Este proyecto sirvio como examen final de 4to semestre el cual quise que recopilara todo lo aprendido en aquel momento (React y manejo de APIs). Se trata de un proyecto que simula una aplicacion para meditar con audios de mis clases generados con AI, asi como tambien un asistente.",
+    primary_url: "https://inner-voice.netlify.app/",
+    tools: [
+      "JavaScript",
+      "React",
+      "Wordpress",
+      "Python",
+      "TailwindCSS"
+    ],
+    devices: ["Tablet", "Desktop"],
+    image: "InnerVoice",
+    links: [
+      {
+        url: "https://inner-voice.netlify.app/",
+        name: "Visitar"
+      },
+      {
+        url: "https://github.com/Unstopabloo/Inner-Voice",
+        name: "Github"
+      }
+    ],
+  }
 
 ]

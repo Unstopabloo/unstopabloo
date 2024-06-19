@@ -1,5 +1,5 @@
 ---
-import {
+import JavaScript, {
   AmazonWebServices,
   Astro as AstroIcon,
   Bootstrap,
@@ -67,9 +67,10 @@ const { text } = Astro.props;
   {text === "React Query" && <ReactQuery />}
   {text === "jQuery" && <JQuery />}
   {text === "Wordpress" && <WordPress />}
+  {text === "JavaScript" && <JavaScript />}
 
   <span
-    class="absolute z-10 -top-5 right-0 text-[9px] py-1 px-2 rounded-xl bg-chip border border-[#241561] text-white font-semibold"
+    class="absolute z-10 -top-5 right-0 text-[9px] py-1 px-2 rounded-xl bg-slate-900 border border-slate-800 text-white font-semibold"
   >
     {text}
   </span>
