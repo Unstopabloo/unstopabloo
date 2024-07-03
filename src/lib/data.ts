@@ -136,6 +136,7 @@ export const PROJECTS: Project[] = [
     title: "Hive5 - Gestion y trabajo grupal",
     description: "Hive5 está pensado para ser utilizado como software interno de la metodologia ACBD ampliamente utilizado en la escuela de diseño de DuocUC, fue diseñado para que los alumnos tengan mejor integración en el desarrollo de los proyectos y los docentes tegan informacion más precisa en cuanto a la participación de cada alumno. En este proyecto se implemento interfaz optimista y Suspense.",
     primary_url: "https://hive5.vercel.app/",
+    credits: true,
     tools: [
       "NextJS",
       "TypeScript",

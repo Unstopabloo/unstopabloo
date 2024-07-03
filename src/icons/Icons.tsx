@@ -54,8 +54,8 @@ export const Figma = ({ width = "1em", height = "1em", props }: { width?: string
 
 export const Smarthphone = () => <svg
   xmlns="http://www.w3.org/2000/svg"
-  width="14"
-  height="14"
+  width="16"
+  height="16"
   viewBox="0 0 24 24"
   fill="none"
   stroke="#D1D5DB"
@@ -68,8 +68,8 @@ export const Smarthphone = () => <svg
 
 export const Laptop = () => <svg
   xmlns="http://www.w3.org/2000/svg"
-  width="18"
-  height="18"
+  width="20"
+  height="20"
   viewBox="0 0 24 24"
   fill="none"
   stroke="#D1D5DB"
@@ -81,8 +81,8 @@ export const Laptop = () => <svg
 
 export const Tablet = () => <svg
   xmlns="http://www.w3.org/2000/svg"
-  width="14"
-  height="14"
+  width="16"
+  height="16"
   viewBox="0 0 24 24"
   fill="none"
   stroke="#D1D5DB"
