@@ -4,14 +4,9 @@ Hola! 🤓 soy Pablo Oyarce
 Frontend Developer
 ------------------
 
-Desarrollador Frontend y entusiasta del diseño y experiencia de interfaces, especializado aplicaciones web y sitios interactivos.
-
-* 🌍  I'm based in Santiago, Chile
-* 🖥️  See my portfolio at [unstopabloo.dev](http://unstopabloo.dev)
-* ✉️  You can contact me at [pablooyarceramirez@gmail.com](mailto:pablooyarceramirez@gmail.com)
-* 🚀  I'm currently working on [MentorU](http://mentoru.co)
-* 🧠  I'm learning React Native
-
+<p align="center">
+  Desarrollador Frontend y entusiasta del diseño y experiencia de interfaces, especializado aplicaciones web y sitios interactivos.
+</p>
 <div align="center">
   
   [![Estadisticas de Github de Unstopabloo](https://github-readme-stats.vercel.app/api?username=unstopabloo&show_icons=true&locale=es&theme=dark#gh-dark-mode-only)](https://github.com/unstopabloo/github-readme-stats#gh-dark-mode-only)
