@@ -12,6 +12,7 @@ Desarrollador Frontend y entusiasta del diseño y experiencia de interfaces, esp
 * 🚀  I'm currently working on [MentorU](http://mentoru.co)
 * 🧠  I'm learning React Native
 
+[![Estadisticas de Github de Unstopabloo](https://github-readme-stats.vercel.app/api/?username=unstopabloo&show_icons=true&theme=dark#gh-dark-mode-only&locale=es)](https://github.com/unstopabloo/github-readme-stats#gh-dark-mode-only)
 [![Estadisticas de Github de Unstopabloo](https://github-readme-stats.vercel.app/api/top-langs/?username=unstopabloo&show_icons=true&theme=dark#gh-dark-mode-only&locale=es)](https://github.com/unstopabloo/github-readme-stats#gh-dark-mode-only)
 [![Estadisticas de Github de Unstopabloo](https://github-readme-stats.vercel.app/api?username=unstopabloo&show_icons=true&theme=default#gh-light-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-light-mode-only)
 
