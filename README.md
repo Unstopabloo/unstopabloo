@@ -1,7 +1,5 @@
-Hola! 🤓 soy Pablo Oyarce
-=============================
-
-Frontend Developer
+<h2 align="center">Hola! soy Pablo Oyarce ✌️</h2>
+<h3 align="center">Frontend Developer</h3>
 ------------------
 
 <p align="center">
