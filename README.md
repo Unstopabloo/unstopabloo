@@ -12,9 +12,7 @@ Desarrollador Frontend y entusiasta del diseño y experiencia de interfaces, esp
 * 🚀  I'm currently working on [MentorU](http://mentoru.co)
 * 🧠  I'm learning React Native
 
-### Skills
-
-[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=unstopabloo)](https://github.com/anuraghazra/github-readme-stats)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=transparent)
 
 
 ### Socials
