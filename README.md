@@ -1,4 +1,4 @@
-Hi! 🤓 my name is Pablo Oyarce
+Hola! 🤓 soy Pablo Oyarce
 =============================
 
 Frontend Developer
