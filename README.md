@@ -10,7 +10,6 @@
   
   --------------
   
-  [![Estadisticas de Github de Unstopabloo](https://github-readme-stats.vercel.app/api/top-langs/?username=unstopabloo&show_icons=true&theme=dark#gh-dark-mode-only&locale=es)](https://github.com/unstopabloo/github-readme-stats#gh-dark-mode-only)
   [![Estadisticas de Github de Unstopabloo](https://github-readme-stats.vercel.app/api?username=unstopabloo&show_icons=true&theme=default#gh-light-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-light-mode-only)
 
 </div>
