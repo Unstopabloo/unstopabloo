@@ -2,7 +2,7 @@
 <h3 align="center">Frontend Developer</h3>
 
 <p align="center">
-  Desarrollador Frontend y entusiasta del diseño y experiencia de interfaces, especializado aplicaciones web y sitios interactivos.
+  Desarrollador Fullstack y entusiasta del diseño y experiencia de interfaces, especializado aplicaciones web y sitios interactivos.
 </p>
 <div align="center">
   
