@@ -5,19 +5,26 @@ const GAP = 4;
 const LINE_THICKNESS = 2;
 const FALLBACK_LINE_COUNT = 5;
 
-const getH2Count = () => {
-  if (typeof document === "undefined") return FALLBACK_LINE_COUNT;
+const getH2Elements = (): HTMLHeadingElement[] => {
+  if (typeof document === "undefined") return [];
   const main = document.querySelector("main");
   const h2s = main ? main.querySelectorAll("h2") : document.querySelectorAll("h2");
-  return Math.max(h2s.length, 1);
+  return Array.from(h2s);
 };
 
 export const Minimap = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const h2ElementsRef = useRef<HTMLHeadingElement[]>([]);
   const [lineCount, setLineCount] = useState(FALLBACK_LINE_COUNT);
   const [lineScales, setLineScales] = useState<number[]>(
     Array(FALLBACK_LINE_COUNT).fill(1),
   );
+
+  const updateH2s = useCallback(() => {
+    const elements = getH2Elements();
+    h2ElementsRef.current = elements;
+    return Math.max(elements.length, 1);
+  }, []);
  
   const { scrollYProgress } = useScroll();
  
@@ -66,21 +73,28 @@ export const Minimap = () => {
     requestAnimationFrame(() => setLineScales(Array(lineCount).fill(1)));
   };
 
+  const handleLineClick = (index: number) => {
+    const h2 = h2ElementsRef.current[index];
+    if (h2) {
+      h2.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   useEffect(() => {
-    const count = getH2Count();
+    const count = updateH2s();
     setLineCount(count);
     setLineScales(Array(count).fill(1));
-  }, []);
+  }, [updateH2s]);
 
   useEffect(() => {
     const onPageLoad = () => {
-      const count = getH2Count();
+      const count = updateH2s();
       setLineCount(count);
       setLineScales(Array(count).fill(1));
     };
     document.addEventListener("astro:page-load", onPageLoad);
     return () => document.removeEventListener("astro:page-load", onPageLoad);
-  }, []);
+  }, [updateH2s]);
 
   useEffect(() => {
     const unsub = barSpringForLines.on("change", (latest) => {
@@ -104,24 +118,29 @@ export const Minimap = () => {
         onMouseLeave={handleMouseLeave}
         className="fixed left-0 top-0 bottom-0 h-fit my-auto"
       >
-        <div className="flex flex-col gap-2.25 items-start pl-10">
+        <div className="flex flex-col gap-1.5 items-start pl-10">
           {lineWidths.map((width, index) => (
-            <motion.div
+            <button
               key={index}
-              className={`h-px ${width === 20 ? "bg-softer-white" : "bg-soft-white/70"}`}
-              style={{
-                width,
-              }}
-              animate={{
-                scaleX: lineScales[index],
-                transformOrigin: "50% 0%",
-              }}
-              transition={{
-                type: "spring",
-                bounce: 0,
-                duration: 0.3,
-              }}
-            />
+              type="button"
+              onClick={() => handleLineClick(index)}
+              className="flex items-center justify-start py-1.5 -my-0.5 cursor-pointer w-full text-left"
+              aria-label={`Ir a sección ${index + 1}`}
+            >
+              <motion.span
+                className={`h-px block ${width === 20 ? "bg-softer-white" : "bg-soft-white/70"}`}
+                style={{ width }}
+                animate={{
+                  scaleX: lineScales[index],
+                  transformOrigin: "50% 0%",
+                }}
+                transition={{
+                  type: "spring",
+                  bounce: 0,
+                  duration: 0.3,
+                }}
+              />
+            </button>
           ))}
         </div>
       </motion.div>

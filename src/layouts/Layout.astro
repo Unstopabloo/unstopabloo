@@ -6,7 +6,6 @@ import { ClientRouter } from "astro:transitions";
 
 import "../styles/global.css";
 import Breadcrumb from "../components/breadcrumb.astro";
-import * as Minimapvue from "../components/Minimap.vue";
 import { Minimap } from "../components/minimap";
 
 interface BreadcrumbItem {
@@ -124,7 +123,7 @@ const jsonLd = {
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content={ogImageAlt} />
 
-    <link rel="icon" type="image/ico" href="/favicon-portfolio.ico" />
+    <link rel="icon" type="image/ico" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <ClientRouter fallback="animate" />
     <title>{title}</title>
