@@ -6,6 +6,8 @@ import { ClientRouter } from "astro:transitions";
 
 import "../styles/global.css";
 import Breadcrumb from "../components/breadcrumb.astro";
+import * as Minimapvue from "../components/Minimap.vue";
+import { Minimap } from "../components/minimap";
 
 interface BreadcrumbItem {
   label: string;
@@ -122,7 +124,7 @@ const jsonLd = {
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content={ogImageAlt} />
 
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" type="image/ico" href="/favicon-portfolio.ico" />
     <meta name="generator" content={Astro.generator} />
     <ClientRouter fallback="animate" />
     <title>{title}</title>
@@ -151,7 +153,7 @@ const jsonLd = {
     </script>
   </head>
   <body
-    class="relative overflow-y-auto h-full min-h-[96dvh] px-4 sm:px-6 py-14 md:px-20 md:py-20 m-1 md:m-4 rounded-2xl border border-border bg-background font-(--font-family-sans) text-sm"
+    class="relative min-h-[96dvh] px-4 sm:px-6 py-14 md:px-20 md:py-20 m-1 md:m-4 rounded-2xl border border-border bg-background font-(--font-family-sans) text-sm"
   >
     {
       breadcrumb && breadcrumb.length > 0 && (
@@ -161,6 +163,7 @@ const jsonLd = {
       )
     }
     <slot />
+    <Minimap client:load />
     <script>
       document.getElementById("theme-toggle")?.addEventListener("click", () => {
         const html = document.documentElement;

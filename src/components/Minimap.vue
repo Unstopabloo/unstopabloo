@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { motion, useMotionValue, useScroll, useSpring } from "motion-v";
+import { motion, useMotionValue, useSpring } from "motion-v";
 import { ref, nextTick, onMounted, onUnmounted } from "vue";
 
 const props = withDefaults(
   defineProps<{
     sectionSelector?: string;
   }>(),
-  { sectionSelector: "article h2" }
+  { sectionSelector: "main section, article h2" }
 );
 
 const LINE_THICKNESS = 1;
@@ -33,13 +33,12 @@ const updateScalesAndOpacity = (y: number) => {
     const distance = Math.abs(exactIndex - i);
     return distance <= 2.5 ? calculateScale(distance) : 1;
   });
-  const activeIndex = Math.round(exactIndex);
+  const idx = Math.round(exactIndex);
   lineOpacities.value = Array.from({ length: lineCount.value }, (_, i) =>
-    Math.abs(i - activeIndex) <= 1 ? 1 : 0.4
+    Math.abs(i - idx) <= 1 ? 1 : 0.4
   );
 };
 
-const { scrollYProgress } = useScroll();
 const barY = useMotionValue(0);
 const barSpring = useSpring(barY, {
   stiffness: 700,
@@ -51,9 +50,18 @@ const barSpringForLines = useSpring(barSpring, {
   bounce: 0,
 });
 
-let scrollUnsub: (() => void) | null = null;
 let springUnsub: (() => void) | null = null;
 let resizeObserver: ResizeObserver | null = null;
+let scrollHandler: (() => void) | null = null;
+let pollId: ReturnType<typeof setInterval> | null = null;
+
+function getScrollProgress(): number {
+  const el = document.scrollingElement ?? document.documentElement;
+  const scrollTop = el.scrollTop;
+  const scrollHeight = el.scrollHeight - el.clientHeight;
+  if (scrollHeight <= 0) return 0;
+  return Math.min(1, Math.max(0, scrollTop / scrollHeight));
+}
 
 onMounted(() => {
   const sections = document.querySelectorAll(props.sectionSelector);
@@ -77,21 +85,27 @@ onMounted(() => {
       const h = el.offsetHeight;
       if (h > 0) {
         containerHeight.value = h;
-        const progress = scrollYProgress.get();
-        barY.set(progress * (h - 1));
+        barY.set(getScrollProgress() * (h - 1));
       }
     });
+  };
+
+  scrollHandler = () => {
+    const h = containerHeight.value;
+    if (h > 0) {
+      barY.set(getScrollProgress() * (h - 1));
+    }
   };
 
   nextTick(() => {
     syncBarAndScales();
 
-    scrollUnsub = scrollYProgress.on("change", () => {
-      const h = containerHeight.value;
-      if (h > 0) {
-        barY.set(scrollYProgress.get() * (h - 1));
-      }
+    window.addEventListener("scroll", scrollHandler, { passive: true });
+    document.documentElement.addEventListener("scroll", scrollHandler, {
+      passive: true,
     });
+    document.body.addEventListener("scroll", scrollHandler, { passive: true });
+    pollId = setInterval(scrollHandler, 100);
 
     springUnsub = barSpringForLines.on("change", (latest: number) => {
       updateScalesAndOpacity(latest);
@@ -101,11 +115,18 @@ onMounted(() => {
     if (containerRef.value) {
       resizeObserver.observe(containerRef.value);
     }
+
+    scrollHandler();
   });
 });
 
 onUnmounted(() => {
-  scrollUnsub?.();
+  if (pollId) clearInterval(pollId);
+  if (scrollHandler) {
+    window.removeEventListener("scroll", scrollHandler);
+    document.documentElement.removeEventListener("scroll", scrollHandler);
+    document.body.removeEventListener("scroll", scrollHandler);
+  }
   springUnsub?.();
   resizeObserver?.disconnect();
 });
@@ -143,7 +164,7 @@ const handleMouseLeave = () => {
     v-if="lineCount > 0"
     ref="containerRef"
     class="minimap"
-    :initial="{ opacity: 0, filter: 'blur(4px)' }"
+    :initial="{ opacity: 0, filter: 'blur(3px)' }"
     :animate="{ opacity: 1, filter: 'blur(0px)' }"
     :transition="{ duration: 0.5 }"
     @mousemove="handleMouseMove"
@@ -221,10 +242,6 @@ const handleMouseLeave = () => {
 
 .minimap__line:hover {
   opacity: 1 !important;
-}
-
-.minimap__line--accent {
-  /* accent via lineWidths */
 }
 
 html[data-theme="light"] .minimap__line {

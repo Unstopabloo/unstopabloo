@@ -1,6 +1,5 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Minimap from "../../components/Minimap.vue";
 import { getCollection, render } from "astro:content";
 import { fade } from "astro:transitions";
 
@@ -61,5 +60,4 @@ const { Content } = await render(post);
       </div>
     </article>
   </main>
-  <Minimap client:load sectionSelector="article h2" />
 </Layout>

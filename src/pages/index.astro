@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Minimap from "../components/Minimap.vue";
 import Hero from "../sections/hero.astro";
 import Projects from "../sections/projects.astro";
 import Lab from "../sections/lab.astro";
@@ -23,5 +22,4 @@ import Connect from "../sections/connect.astro";
     <People />
     <Connect />
   </main>
-  <Minimap client:load sectionSelector="main section" />
 </Layout>
