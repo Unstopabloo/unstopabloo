@@ -1,0 +1,13 @@
+---
+interface Props {
+  className?: string;
+}
+
+const { className = "" } = Astro.props;
+---
+
+<section
+  class={`not-first:pt-16 not-first:border-t border-border ${className}`}
+>
+  <slot />
+</section>

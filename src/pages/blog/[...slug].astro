@@ -1,0 +1,65 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Minimap from "../../components/Minimap.vue";
+import { getCollection, render } from "astro:content";
+import { fade } from "astro:transitions";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id.replace(/\.mdx?$/, "") },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout
+  title={`${post.data.title} — Pablo Oyarce`}
+  description={post.data.description}
+  breadcrumb={[
+    { label: "Blog", href: "/blog" },
+    { label: post.data.title, href: undefined },
+  ]}
+>
+  <main
+    class="container mx-auto max-w-3xl py-8"
+    transition:animate={fade({ duration: "0.25s" })}
+  >
+    <article class="prose prose-invert max-w-none">
+      <header class="mb-8">
+        <h1
+          class="font-family-display text-2xl md:text-3xl text-soft-white mb-2"
+        >
+          {post.data.title}
+        </h1>
+        <p class="text-softer-white font-family-sans text-md mb-4">
+          {post.data.description}
+        </p>
+        <div class="flex items-center gap-3 text-sm text-softer-white">
+          <span class="font-family-serif italic">{post.data.category}</span>
+          <span>·</span>
+          <span>{post.data.readTime}</span>
+          <span>·</span>
+          <time datetime={post.data.pubDate.toISOString()}>
+            {
+              post.data.pubDate.toLocaleDateString("es-CL", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })
+            }
+          </time>
+        </div>
+      </header>
+      <div
+        class="font-family-sans text-softer-white leading-relaxed [&_h2]:text-lg [&_h2]:font-family-display [&_h2]:text-soft-white [&_h2]:mt-6 [&_h2]:mb-3 [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-4"
+      >
+        <Content />
+      </div>
+    </article>
+  </main>
+  <Minimap client:load sectionSelector="article h2" />
+</Layout>

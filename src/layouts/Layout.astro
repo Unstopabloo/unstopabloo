@@ -1,117 +1,177 @@
 ---
-import "@fontsource-variable/jost";
+import "@fontsource-variable/newsreader";
+import "@fontsource-variable/geist";
+import "@fontsource/cal-sans";
+import { ClientRouter } from "astro:transitions";
 
-interface Props {
-	title: string;
+import "../styles/global.css";
+import Breadcrumb from "../components/breadcrumb.astro";
+
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
 }
 
-const { title } = Astro.props;
+interface Props {
+  title: string;
+  description?: string;
+  breadcrumb?: BreadcrumbItem[];
+}
+
+const { title, description, breadcrumb } = Astro.props;
+
+const metaDescription =
+  description ??
+  "Pablo Oyarce Ramirez — Product Engineer (TypeScript/Python). Agentic workflows, RAG, and SaaS product engineering. Santiago, Chile. Open to opportunities.";
+const siteUrl = (Astro.site?.toString() ?? "https://unstopabloo.dev").replace(
+  /\/$/,
+  "",
+);
+const canonical = new URL(Astro.url.pathname, siteUrl).toString();
+
+const ogImage = new URL("/og.png", siteUrl).toString();
+const ogImageAlt =
+  "Pablo Oyarce Ramirez — Product Engineer focused on AI-first solutions, agentic workflows, and RAG.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#pablo`,
+      name: "Pablo Oyarce Ramirez",
+      jobTitle: "Product Engineer",
+      description: metaDescription,
+      url: siteUrl,
+      image: ogImage,
+      imageAlt: ogImageAlt,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Santiago",
+        addressCountry: "CL",
+      },
+      knowsLanguage: ["es-CL", "en"],
+      sameAs: [
+        "https://www.linkedin.com/in/pablo-oyarce-ramirez/",
+        "https://github.com/Unstopabloo",
+      ],
+      knowsAbout: [
+        "Agentic workflows",
+        "RAG architectures",
+        "Applied Generative AI",
+        "TypeScript",
+        "Python",
+        "SaaS product engineering",
+        "Multi-tenant systems",
+        "WebSockets",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      name: "Pablo Oyarce — Product Engineer",
+      url: siteUrl,
+      description: metaDescription,
+      author: { "@id": `${siteUrl}/#pablo` },
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${canonical}#webpage`,
+      url: canonical,
+      name: title,
+      description: metaDescription,
+      isPartOf: { "@id": `${siteUrl}/#website` },
+      about: { "@id": `${siteUrl}/#pablo` },
+      primaryImageOfPage: {
+        "@type": "ImageObject",
+        url: ogImage,
+      },
+    },
+  ],
+};
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta
-			name="description"
-			content="Pablo Oyarce Desarrollador Frontend, abierto a trabajar en sitios y aplicaciones web interactivas"
-		/>
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" href="/favicon.png" />
-		<meta property="og:title" content="Pablo Oyarce Desarrollador Frontend" />
-		<meta
-			property="og:description"
-			content="Pablo Oyarce Desarrollador Frontend, disponible para trabajar en sitios y aplicaciones web interactivas"
-		/>
-		<meta property="og:image" content="/images/perfil1.avif" />
-		<meta property="og:type" content="website" />
-		<meta
-			property="og:site_name"
-			content="Pablo Oyarce Desarrollador Frontend"
-		/>
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body class="relative">
-		<div
-			id="trailer"
-			class="pointer-events-none fixed inset-0 -z-30 duration-300"
-			style="background: radial-gradient(600px at 1000px 500px, rgba(29, 60, 216, 0.15), transparent 80%);"
-		>
-		</div>
-		<div
-			class="mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0 z-50"
-		>
-			<slot />
-		</div>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href={canonical} />
+    <meta name="description" content={metaDescription} />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <meta name="author" content="Pablo Oyarce Ramirez" />
+    <meta name="theme-color" content="#0a0a0a" id="theme-color-meta" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Pablo Oyarce — Product Developer" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={metaDescription} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
+    <ClientRouter fallback="animate" />
+    <title>{title}</title>
+
+    <!-- Schema.org JSON-LD -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(jsonLd)}
+      is:inline
+    />
+    <script is:inline>
+      (function () {
+        const stored = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        const theme = stored || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+        const meta = document.getElementById("theme-color-meta");
+        if (meta)
+          meta.setAttribute(
+            "content",
+            theme === "dark" ? "#0a0a0a" : "#fafafa",
+          );
+      })();
+    </script>
+  </head>
+  <body
+    class="relative overflow-y-auto h-full min-h-[96dvh] px-4 sm:px-6 py-14 md:px-20 md:py-20 m-1 md:m-4 rounded-2xl border border-border bg-background font-(--font-family-sans) text-sm"
+  >
+    {
+      breadcrumb && breadcrumb.length > 0 && (
+        <div class="container mx-auto max-w-3xl">
+          <Breadcrumb items={breadcrumb} />
+        </div>
+      )
+    }
+    <slot />
+    <script>
+      document.getElementById("theme-toggle")?.addEventListener("click", () => {
+        const html = document.documentElement;
+        const next =
+          html.getAttribute("data-theme") === "light" ? "dark" : "light";
+        html.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+        const meta = document.getElementById("theme-color-meta");
+        if (meta)
+          meta.setAttribute("content", next === "dark" ? "#0a0a0a" : "#fafafa");
+      });
+    </script>
+  </body>
 </html>
-
-<script>
-	const trailer = document.getElementById("trailer");
-
-	window.onmousemove = (e) => {
-		const x = e.clientX - trailer!.offsetWidth / 2;
-		const y = e.clientY - trailer!.offsetHeight / 2;
-
-		trailer!.style.transform = `translate(${x}px, ${y}px)`;
-	};
-</script>
-
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-		scroll-behavior: smooth;
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	body {
-		overflow-x: hidden;
-		width: 100%;
-		min-height: 100vh;
-	}
-	.jost {
-		font-family: "Jost Variable", sans-serif;
-	}
-
-	.reveal {
-		animation: reveal linear both;
-		animation-timeline: view();
-		animation-range: entry 0% cover 20%;
-	}
-
-	@keyframes reveal {
-		0% {
-			opacity: 0;
-			transform: translateY(150px);
-		}
-
-		100% {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>

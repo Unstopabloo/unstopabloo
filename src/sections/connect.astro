@@ -1,0 +1,23 @@
+---
+import Section from "../components/section.astro";
+import SectionTitle from "../components/section-title.astro";
+import { CONNECT_LINKS } from "../lib/data";
+---
+
+<Section>
+  <SectionTitle title="Let's connect." />
+  <nav class="scroll-reveal flex flex-col gap-2 mt-6" aria-label="Contact links">
+    {
+      CONNECT_LINKS.map((link) => (
+        <a
+          href={link.url}
+          target={link.url.startsWith("https") ? "_blank" : undefined}
+          rel={link.url.startsWith("https") ? "noopener noreferrer" : undefined}
+          class="font-family-serif italic text-softer-white text-sm hover:text-primary transition-colors duration-200 cursor-pointer w-fit"
+        >
+          {link.name}
+        </a>
+      ))
+    }
+  </nav>
+</Section>

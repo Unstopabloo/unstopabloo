@@ -1,0 +1,17 @@
+---
+import Section from "../components/section.astro";
+import SectionTitle from "../components/section-title.astro";
+import LabItem from "../components/lab-item.astro";
+import { LAB_ITEMS } from "../lib/data";
+---
+
+<Section>
+  <SectionTitle title="Lab" />
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+    {
+      LAB_ITEMS.map((item) => (
+        <LabItem title={item.title} tags={item.tags} url={item.url} />
+      ))
+    }
+  </div>
+</Section>

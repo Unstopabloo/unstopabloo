@@ -1,0 +1,73 @@
+---
+import Section from "../components/section.astro";
+import { CONNECT_LINKS, HERO } from "../lib/data";
+---
+
+<Section className="relative">
+  <button
+    type="button"
+    id="theme-toggle"
+    aria-label="Alternar tema claro/oscuro"
+    class="absolute cursor-pointer top-0 right-0 p-2 rounded-lg text-softer-white hover:bg-border/30 transition-colors duration-200 z-20"
+  >
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      color="currentColor"
+      class="-rotate-45 size-4"
+      stroke-width="1.5"
+      stroke="currentColor"
+      aria-hidden="true"
+    >
+      <path
+        d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+        stroke="currentColor"
+        stroke-width="1.5"></path>
+      <path
+        d="M5 20L19 5"
+        stroke="currentColor"
+        stroke-linejoin="round"
+        stroke-width="1.5"></path>
+      <path
+        d="M16 9L22 13.8528M12.4128 12.4059L19.3601 18.3634M8 15.6672L15 21.5"
+        stroke="currentColor"
+        stroke-linejoin="round"
+        stroke-width="1.5"></path>
+    </svg>
+  </button>
+  <span
+    class="hero-reveal block font-family-serif text-[1.03rem] italic text-primary font-normal"
+  >
+    {HERO.role}
+  </span>
+  <h1
+    class="hero-reveal text-3xl md:text-4xl font-family-display font-light text-soft-white mt-1"
+  >
+    {HERO.name}
+  </h1>
+  <p
+    class="hero-reveal text-[1rem] md:text-[1.1rem] text-softer-white font-family-sans font-normal text-balance pt-4 max-w-2xl"
+  >
+    {HERO.tagline}
+  </p>
+  <div>
+    <div class="flex gap-4 mt-8">
+      {
+        CONNECT_LINKS.map((link) => (
+          <a
+            href={link.url}
+            target={link.url.startsWith("https") ? "_blank" : undefined}
+            rel={
+              link.url.startsWith("https") ? "noopener noreferrer" : undefined
+            }
+            class="scroll-reveal font-family-serif italic text-softer-white/85 text-sm hover:text-primary hover:font-medium transition-colors duration-200 cursor-pointer w-fit min-w-16"
+          >
+            {link.name}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</Section>
