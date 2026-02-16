@@ -2,7 +2,8 @@
 title: Tea Chill
 description: E-commerce focused on site performance, built with Next.js and Shopify as headless CMS.
 url: https://tea-chill.vercel.app
-pubDate: 2024-01-15
+pubDate: 2023-01-15
+image: /images/tea-chill.avif
 tags:
   - Next.js
   - Shopify

@@ -3,35 +3,38 @@ import SectionTitle from "../components/section-title.astro";
 import Section from "../components/section.astro";
 import ProjectCard from "../components/project-card.astro";
 import { getCollection } from "astro:content";
+
+// Comportamiento del click en tarjetas:
+// - linkToDetail: true → va a /projects/{slug} (página con contenido y "Ver proyecto →")
+// - linkToDetail: false → va directo al url del proyecto
 ---
 
 <Section>
   <header class="scroll-reveal flex justify-between items-center pb-6">
     <SectionTitle title="Projects" />
-    <a
-      href="/projects"
-      class="text-sm text-primary font-family-sans uppercase font-normal tracking-wide hover:underline transition-colors duration-200 cursor-pointer"
-      >View all</a
-    >
   </header>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8 scroll-reveal">
     {
       (await getCollection("projects"))
         .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
         .slice(0, 2)
-        .map((project) => (
-          <ProjectCard
-            title={project.data.title}
-            description={project.data.description}
-            url={
-              project.data.url ??
-              `/projects/${project.id.replace(/\.mdx?$/, "")}`
-            }
-            image={project.data.image}
-            alt={project.data.title}
-            internal={!project.data.url}
-          />
-        ))
+        .map((project) => {
+          const projectSlug = project.id.replace(/\.mdx?$/, "");
+          const url = project.data.linkToDetail
+            ? `/projects/${projectSlug}`
+            : project.data.url ?? `/projects/${projectSlug}`;
+          const internal = project.data.linkToDetail || !project.data.url;
+          return (
+            <ProjectCard
+              title={project.data.title}
+              description={project.data.description}
+              url={url}
+              image={project.data.image}
+              alt={project.data.title}
+              internal={internal}
+            />
+          );
+        })
     }
   </div>
 </Section>

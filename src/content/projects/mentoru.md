@@ -1,7 +1,7 @@
 ---
 title: MentorU
 description: Building multi-stage agentic flows and RAG architectures to personalize corporate skill training at scale.
-url: https://mentoru.com
+url: https://mentoru.co
 image: /images/mentoru.avif
 pubDate: 2023-10-01
 tags:
