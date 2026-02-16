@@ -1,0 +1,29 @@
+---
+import Section from "../components/section.astro";
+import SectionTitle from "../components/section-title.astro";
+import { PEOPLE } from "../lib/data";
+---
+
+<Section>
+  <SectionTitle title="People I've built with." />
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 mt-6">
+    {
+      PEOPLE.map((person) =>
+        person.url ? (
+          <a
+            href={person.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="scroll-reveal font-family-serif italic text-softer-white leading-relaxed tracking-wide hover:text-primary transition-colors duration-200 cursor-pointer"
+          >
+            {person.name}
+          </a>
+        ) : (
+          <span class="scroll-reveal font-family-serif italic text-softer-white leading-relaxed tracking-wide">
+            {person.name}
+          </span>
+        ),
+      )
+    }
+  </div>
+</Section>

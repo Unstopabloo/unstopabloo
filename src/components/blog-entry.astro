@@ -1,0 +1,41 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  category: string;
+  readTime: string;
+  url?: string;
+}
+
+const { title, description, category, readTime, url } = Astro.props;
+
+const baseClass =
+  "scroll-reveal block py-6 cursor-pointer transition-colors duration-200 hover:text-soft-white group";
+---
+
+<a href={url} class={baseClass}>
+  <div
+    class="flex md:items-start md:justify-between gap-2 border-l-2 border-border pl-4"
+  >
+    <div class="flex-1 min-w-0">
+      <h3
+        class="font-family-sans font-medium text-soft-white group-hover:text-primary transition-colors"
+      >
+        {title}
+      </h3>
+      <p
+        class="text-sm text-softer-white mt-1 font-family-sans leading-relaxed text-pretty font-light"
+      >
+        {description}
+      </p>
+    </div>
+    <div
+      class="flex flex-col items-end font-family-serif italic gap-1 shrink-0 md:text-right"
+    >
+      <span class="text-softer-white text-sm font-normal">
+        {category}
+      </span>
+      <span class="text-softer-white/80 text-sm font-light">{readTime}</span>
+    </div>
+  </div>
+</a>

@@ -1,117 +1,260 @@
 ---
-import "@fontsource-variable/jost";
+import "@fontsource-variable/newsreader";
+import "@fontsource-variable/geist";
+import "@fontsource/cal-sans";
+import { ClientRouter } from "astro:transitions";
 
-interface Props {
-	title: string;
+import "../styles/global.css";
+import Breadcrumb from "../components/breadcrumb.astro";
+import { Minimap } from "../components/minimap";
+
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
 }
 
-const { title } = Astro.props;
+interface Props {
+  title: string;
+  description?: string;
+  breadcrumb?: BreadcrumbItem[];
+}
+
+const { title, description, breadcrumb } = Astro.props;
+
+const metaDescription =
+  description ??
+  "Pablo Oyarce Ramirez — Product Engineer (TypeScript/Python). Agentic workflows, RAG, and SaaS product engineering. Santiago, Chile. Open to opportunities.";
+const siteUrl = (Astro.site?.toString() ?? "https://unstopabloo.dev").replace(
+  /\/$/,
+  "",
+);
+const canonical = new URL(Astro.url.pathname, siteUrl).toString();
+
+const ogImage = new URL("/og.png", siteUrl).toString();
+const ogImageAlt =
+  "Pablo Oyarce Ramirez — Product Engineer focused on AI-first solutions, agentic workflows, and RAG.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#pablo`,
+      name: "Pablo Oyarce Ramirez",
+      jobTitle: "Product Engineer",
+      description: metaDescription,
+      url: siteUrl,
+      image: ogImage,
+      imageAlt: ogImageAlt,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Santiago",
+        addressCountry: "CL",
+      },
+      knowsLanguage: ["es-CL", "en"],
+      sameAs: [
+        "https://www.linkedin.com/in/pablo-oyarce-ramirez/",
+        "https://github.com/Unstopabloo",
+      ],
+      knowsAbout: [
+        "Agentic workflows",
+        "RAG architectures",
+        "Applied Generative AI",
+        "TypeScript",
+        "Python",
+        "SaaS product engineering",
+        "Multi-tenant systems",
+        "WebSockets",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      name: "Pablo Oyarce — Product Engineer",
+      url: siteUrl,
+      description: metaDescription,
+      author: { "@id": `${siteUrl}/#pablo` },
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${canonical}#webpage`,
+      url: canonical,
+      name: title,
+      description: metaDescription,
+      isPartOf: { "@id": `${siteUrl}/#website` },
+      about: { "@id": `${siteUrl}/#pablo` },
+      primaryImageOfPage: {
+        "@type": "ImageObject",
+        url: ogImage,
+      },
+    },
+  ],
+};
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta
-			name="description"
-			content="Pablo Oyarce Desarrollador Frontend, abierto a trabajar en sitios y aplicaciones web interactivas"
-		/>
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" href="/favicon.png" />
-		<meta property="og:title" content="Pablo Oyarce Desarrollador Frontend" />
-		<meta
-			property="og:description"
-			content="Pablo Oyarce Desarrollador Frontend, disponible para trabajar en sitios y aplicaciones web interactivas"
-		/>
-		<meta property="og:image" content="/images/perfil1.avif" />
-		<meta property="og:type" content="website" />
-		<meta
-			property="og:site_name"
-			content="Pablo Oyarce Desarrollador Frontend"
-		/>
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body class="relative">
-		<div
-			id="trailer"
-			class="pointer-events-none fixed inset-0 -z-30 duration-300"
-			style="background: radial-gradient(600px at 1000px 500px, rgba(29, 60, 216, 0.15), transparent 80%);"
-		>
-		</div>
-		<div
-			class="mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0 z-50"
-		>
-			<slot />
-		</div>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href={canonical} />
+    <meta name="description" content={metaDescription} />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <meta name="author" content="Pablo Oyarce Ramirez" />
+    <meta name="theme-color" content="#0a0a0a" id="theme-color-meta" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Pablo Oyarce — Product Developer" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={metaDescription} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
+
+    <link rel="icon" type="image/ico" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <ClientRouter fallback="animate" />
+    <title>{title}</title>
+
+    <!-- Schema.org JSON-LD -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(jsonLd)}
+      is:inline
+    />
+    <script is:inline>
+      (function () {
+        const stored = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        const theme = stored || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+        const meta = document.getElementById("theme-color-meta");
+        if (meta)
+          meta.setAttribute(
+            "content",
+            theme === "dark" ? "#0a0a0a" : "#fafafa",
+          );
+      })();
+    </script>
+  </head>
+  <body
+    class="relative min-h-[96dvh] px-4 sm:px-6 py-14 md:px-20 md:py-20 m-1 md:m-4 rounded-2xl border border-border bg-background font-(--font-family-sans) text-sm"
+  >
+    {
+      breadcrumb && breadcrumb.length > 0 && (
+        <div class="container mx-auto max-w-3xl">
+          <Breadcrumb items={breadcrumb} />
+        </div>
+      )
+    }
+    <slot />
+    <nav
+      class="hidden md:fixed left-10 top-1/2 -translate-y-1/2 md:flex flex-col items-center gap-6 z-10"
+      aria-label="Herramientas de navegación"
+    >
+      <button
+        type="button"
+        data-theme-toggle
+        aria-label="Alternar tema claro/oscuro"
+        class="cursor-pointer p-2 z-50 rounded-lg text-softer-white hover:bg-border/30 transition-colors duration-200"
+      >
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          color="currentColor"
+          class="-rotate-45 size-4"
+          stroke-width="1.5"
+          stroke="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+            stroke="currentColor"
+            stroke-width="1.5"></path>
+          <path
+            d="M5 20L19 5"
+            stroke="currentColor"
+            stroke-linejoin="round"
+            stroke-width="1.5"></path>
+          <path
+            d="M16 9L22 13.8528M12.4128 12.4059L19.3601 18.3634M8 15.6672L15 21.5"
+            stroke="currentColor"
+            stroke-linejoin="round"
+            stroke-width="1.5"></path>
+        </svg>
+      </button>
+      <div class="shrink-0">
+        <Minimap client:load />
+      </div>
+    </nav>
+    <script>
+      function applyTheme(theme) {
+        document.documentElement.setAttribute("data-theme", theme);
+        const meta = document.getElementById("theme-color-meta");
+        if (meta)
+          meta.setAttribute(
+            "content",
+            theme === "dark" ? "#0a0a0a" : "#fafafa",
+          );
+      }
+      function initTheme() {
+        const stored = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        applyTheme(stored || (prefersDark ? "dark" : "light"));
+      }
+      function handleThemeToggle() {
+        const next =
+          document.documentElement.getAttribute("data-theme") === "light"
+            ? "dark"
+            : "light";
+        localStorage.setItem("theme", next);
+        applyTheme(next);
+      }
+      initTheme();
+      document.addEventListener("astro:page-load", initTheme);
+      document.addEventListener("click", (e) => {
+        if (e.target instanceof Element && e.target.closest("[data-theme-toggle]"))
+          handleThemeToggle();
+      });
+
+      // Scroll reveal: Intersection Observer (polish-scroll-reveal 100px threshold)
+      // Re-ejecutar en astro:page-load para View Transitions (ClientRouter)
+      function initScrollReveal() {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("scroll-reveal-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: "-100px 0px", threshold: 0 },
+        );
+        document
+          .querySelectorAll(".scroll-reveal")
+          .forEach((el) => observer.observe(el));
+      }
+      initScrollReveal();
+      document.addEventListener("astro:page-load", initScrollReveal);
+    </script>
+  </body>
 </html>
-
-<script>
-	const trailer = document.getElementById("trailer");
-
-	window.onmousemove = (e) => {
-		const x = e.clientX - trailer!.offsetWidth / 2;
-		const y = e.clientY - trailer!.offsetHeight / 2;
-
-		trailer!.style.transform = `translate(${x}px, ${y}px)`;
-	};
-</script>
-
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-		scroll-behavior: smooth;
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	body {
-		overflow-x: hidden;
-		width: 100%;
-		min-height: 100vh;
-	}
-	.jost {
-		font-family: "Jost Variable", sans-serif;
-	}
-
-	.reveal {
-		animation: reveal linear both;
-		animation-timeline: view();
-		animation-range: entry 0% cover 20%;
-	}
-
-	@keyframes reveal {
-		0% {
-			opacity: 0;
-			transform: translateY(150px);
-		}
-
-		100% {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>

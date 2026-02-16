@@ -1,50 +1,21 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
-import Nav from "../components/Nav.astro";
-import Experiencia from "../components/Experiencia.astro";
-import Title from "../components/Title.astro";
-import Proyectos from "../components/Proyectos.astro";
-import Sobremi from "../components/Sobremi.astro";
-import Tecnologias from "../components/Tecnologias.astro";
-import Chip from "../components/Chip.astro";
+import Hero from "../sections/hero.astro";
+import Projects from "../sections/projects.astro";
+import Experience from "../sections/experience.astro";
+import People from "../sections/people.astro";
+import Connect from "../sections/connect.astro";
 ---
 
-<Layout title="Portafolio de Pablo Oyarce">
-	<main class="lg:flex lg:justify-between lg:gap-4 text-slate-300 z-50">
-		<section
-			class="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-1/2 lg:flex-col lg:justify-between lg:py-24"
-		>
-			<div class="flex flex-col gap-14">
-				<Header />
-				<Nav />
-			</div>
-			<footer class="flex items-start gap-2 md:gap-10">
-				<Chip
-					href="mailto:pablooyarceramirez@gmail.com?Subject=Trabajemos juntos en algo increible"
-					name="Contactame"
-				/>
-				<Chip
-					href="https://www.linkedin.com/in/pablo-oyarce-ramirez/"
-					name="LinkedIn"
-				/>
-				<Chip href="https://github.com/Unstopabloo" name="Github" />
-			</footer>
-		</section>
-
-		<section class="pt-24 lg:w-1/2 lg:py-24 flex flex-col gap-12">
-			<section id="experiencia">
-				<Experiencia />
-			</section>
-			<section id="proyectos">
-				<Proyectos />
-			</section>
-			<section id="sobre-mi">
-				<Sobremi />
-			</section>
-			<section id="tecnologias">
-				<Tecnologias />
-			</section>
-		</section>
-	</main>
+<Layout
+  title="Pablo Oyarce Ramirez — Product Engineer | AI-first Solutions"
+  description="Product Engineer designing and shipping AI-first solutions, agentic workflows, and high-performance product design. Open to opportunities."
+>
+  <main class="flex flex-col gap-16 container mx-auto max-w-3xl">
+    <Hero />
+    <Projects />
+    <Experience />
+    <People />
+    <Connect />
+  </main>
 </Layout>
