@@ -108,7 +108,7 @@ export const Minimap = () => {
     .map((_, i) => ((i + 1) % 5 === 1 ? 20 : 14));
  
   return (
-    <div className="size-full flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center">
       <motion.div
         ref={containerRef}
         initial={{ opacity: 0, filter: "blur(3px)" }}
@@ -116,9 +116,9 @@ export const Minimap = () => {
         transition={{ duration: 0.5 }}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="fixed left-0 top-0 bottom-0 h-fit my-auto"
+        className="h-fit"
       >
-        <div className="flex flex-col gap-1.5 items-start pl-10">
+        <div className="flex flex-col gap-1 items-center">
           {lineWidths.map((width, index) => (
             <button
               key={index}
